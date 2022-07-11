@@ -15,7 +15,7 @@ async function getPictures(url) {
     if (response.ok) {
         return response.json();
     } else {
-        throw new Error('response.status')
+        throw new Error('response.status');
     }
 }
 
@@ -37,20 +37,14 @@ getAllAlbums('http://localhost:3000/albums')
         albums.innerHTML = lis;
     })
 
-getPictures('http://localhost:3000/photos/')
-    .then (data => {
-        let newArray = data.filter(el => el.albumId === 1);
-        displayPictures(pictures, newArray)
-    })
+getPictures('http://localhost:3000/albums/1/photos/')
+    .then (data => displayPictures(pictures, data))
 
 albums.addEventListener('click', function(event) {
     let id = event.target.dataset.id;
 
-    getPictures('http://localhost:3000/photos/')
-        .then (data => {
-                let newArray = data.filter(el => el.albumId === +`${id}`);
-                displayPictures(pictures, newArray)
-            }
-        )
+    getPictures(`http://localhost:3000/albums/${id}/photos`)
+        .then(data => {
+            displayPictures(pictures, data);
+        })
 })
-
