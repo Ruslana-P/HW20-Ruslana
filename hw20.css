@@ -1,0 +1,11 @@
+#main{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 1px;
+}
+
+img{
+    width: 30%;
+}
+
